@@ -19,7 +19,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             </div>
           </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            MEDCORE
+            Anaesthesia
           </h1>
           <p className="text-xl text-muted-foreground font-medium">
             Examen Neuro 2024/2025

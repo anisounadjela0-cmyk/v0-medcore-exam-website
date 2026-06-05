@@ -30,7 +30,7 @@ export default function ExamHeader({
             </div>
             <div>
               <h1 className="font-bold text-lg bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                MEDCORE
+                Anaesthesia
               </h1>
               <p className="text-xs text-muted-foreground">Neuroanatomie</p>
             </div>
