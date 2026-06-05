@@ -19,7 +19,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             </div>
           </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            MEDCORE
+            Anaesthesia
           </h1>
           <p className="text-xl text-muted-foreground font-medium">
             Examen Neuro 2024/2025
@@ -63,6 +63,13 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           </Button>
           <p className="text-xs text-muted-foreground">
             Vous aurez 60 minutes pour répondre à toutes les questions
+          </p>
+        </div>
+
+        {/* Footer Credits */}
+        <div className="pt-12 border-t border-border/50">
+          <p className="text-xs text-muted-foreground">
+            Made by <span className="font-semibold text-foreground">Medcore</span> & <span className="font-semibold text-foreground">Anaesthesia Man</span>
           </p>
         </div>
       </div>

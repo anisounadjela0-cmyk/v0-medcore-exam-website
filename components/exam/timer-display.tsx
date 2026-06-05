@@ -15,14 +15,14 @@ export default function TimerDisplay({ timeRemaining }: TimerDisplayProps) {
 
   return (
     <div
-      className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors duration-300 ${
+      className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border transition-colors duration-300 flex-shrink-0 ${
         isLowTime
           ? 'bg-destructive/10 border-destructive/50 text-destructive'
           : 'bg-primary/10 border-primary/20 text-primary'
       }`}
     >
-      <Clock className="h-4 w-4" />
-      <span className="font-mono font-semibold text-sm">
+      <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+      <span className="font-mono font-semibold text-xs sm:text-sm">
         {formatTime(minutes)}:{formatTime(seconds)}
       </span>
     </div>

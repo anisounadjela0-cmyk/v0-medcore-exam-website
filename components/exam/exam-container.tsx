@@ -18,6 +18,7 @@ export default function ExamContainer({ onExit }: ExamContainerProps) {
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [timeRemaining, setTimeRemaining] = useState(60 * 60); // 60 minutes in seconds
   const [state, setState] = useState<ExamState>('exam');
+  const [showNav, setShowNav] = useState(false);
 
   // Timer effect
   useEffect(() => {
@@ -57,6 +58,7 @@ export default function ExamContainer({ onExit }: ExamContainerProps) {
 
   const handleJumpToQuestion = (index: number) => {
     setCurrentQuestion(index);
+    setShowNav(false);
   };
 
   const handleFinish = () => {
@@ -101,7 +103,8 @@ export default function ExamContainer({ onExit }: ExamContainerProps) {
         onExit={handleExit}
       />
 
-      <div className="flex-1 flex gap-6 p-6 container mx-auto max-w-7xl">
+      {/* Desktop Layout */}
+      <div className="hidden lg:flex flex-1 gap-6 p-6 container mx-auto max-w-7xl">
         <div className="flex-1">
           <QuestionPanel
             question={questions[currentQuestion]}
@@ -123,6 +126,35 @@ export default function ExamContainer({ onExit }: ExamContainerProps) {
             onJumpToQuestion={handleJumpToQuestion}
             onFinish={handleFinish}
             state={state}
+          />
+        </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="lg:hidden flex flex-1 flex-col">
+        <div className="flex-1 overflow-y-auto p-4">
+          <QuestionPanel
+            question={questions[currentQuestion]}
+            questionIndex={currentQuestion}
+            selectedAnswer={answers[currentQuestion]}
+            onAnswer={handleAnswer}
+            state={state}
+            allAnswers={answers}
+          />
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="border-t border-border bg-card sticky bottom-0">
+          <NavigationPanel
+            currentQuestion={currentQuestion}
+            totalQuestions={questions.length}
+            answers={answers}
+            onNext={handleNext}
+            onPrevious={handlePrevious}
+            onJumpToQuestion={handleJumpToQuestion}
+            onFinish={handleFinish}
+            state={state}
+            isMobile
           />
         </div>
       </div>
