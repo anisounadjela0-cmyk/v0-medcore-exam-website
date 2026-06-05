@@ -29,15 +29,15 @@ export default function QuestionPanel({
   const options = ['A', 'B', 'C', 'D', 'E'] as const;
 
   return (
-    <Card className="h-full p-8 bg-card/50 backdrop-blur border-primary/10 flex flex-col">
+    <Card className="h-full p-4 sm:p-8 bg-card/50 backdrop-blur border-primary/10 flex flex-col">
       {/* Question Header */}
-      <div className="space-y-4 mb-8 pb-6 border-b border-border/50">
+      <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-border/50">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-2 flex-1">
-            <div className="text-sm font-medium text-muted-foreground">
+            <div className="text-xs sm:text-sm font-medium text-muted-foreground">
               Question {questionIndex + 1} / 70
             </div>
-            <h2 className="text-xl font-semibold text-foreground leading-relaxed">
+            <h2 className="text-lg sm:text-xl font-semibold text-foreground leading-relaxed">
               {question.question}
             </h2>
           </div>
@@ -48,9 +48,9 @@ export default function QuestionPanel({
               }`}
             >
               {isCorrect ? (
-                <CheckCircle2 className="h-6 w-6" />
+                <CheckCircle2 className="h-5 sm:h-6 w-5 sm:w-6" />
               ) : (
-                <XCircle className="h-6 w-6" />
+                <XCircle className="h-5 sm:h-6 w-5 sm:w-6" />
               )}
             </div>
           )}
@@ -58,7 +58,7 @@ export default function QuestionPanel({
       </div>
 
       {/* Options */}
-      <div className="space-y-3 flex-1">
+      <div className="space-y-2 sm:space-y-3 flex-1">
         <RadioGroup value={selectedAnswer || ''} onValueChange={onAnswer}>
           {options.map((option) => {
             const optionText = question.options[option];
@@ -69,7 +69,7 @@ export default function QuestionPanel({
 
             let optionClasses =
               'peer hidden id-[option-' + option + '] cursor-pointer';
-            let labelClasses = `flex items-start gap-3 p-4 rounded-lg border cursor-pointer transition-all duration-200 ${
+            let labelClasses = `flex items-start gap-3 p-3 sm:p-4 rounded-lg border cursor-pointer transition-all duration-200 ${
               isSelected
                 ? 'border-primary/50 bg-primary/5'
                 : 'border-border/50 hover:border-primary/30 hover:bg-primary/3'
@@ -79,13 +79,13 @@ export default function QuestionPanel({
             if (isReviewOrResults) {
               if (isCorrectAnswer) {
                 labelClasses =
-                  'flex items-start gap-3 p-4 rounded-lg border border-green-500/50 bg-green-500/5';
+                  'flex items-start gap-3 p-3 sm:p-4 rounded-lg border border-green-500/50 bg-green-500/5';
               } else if (isWrongAnswer) {
                 labelClasses =
-                  'flex items-start gap-3 p-4 rounded-lg border border-destructive/50 bg-destructive/5';
+                  'flex items-start gap-3 p-3 sm:p-4 rounded-lg border border-destructive/50 bg-destructive/5';
               } else {
                 labelClasses =
-                  'flex items-start gap-3 p-4 rounded-lg border border-border/50 opacity-60';
+                  'flex items-start gap-3 p-3 sm:p-4 rounded-lg border border-border/50 opacity-60';
               }
             }
 
@@ -101,10 +101,10 @@ export default function QuestionPanel({
                   htmlFor={`option-${option}`}
                   className={labelClasses}
                 >
-                  <span className="font-semibold text-primary min-w-8 pt-0.5">
+                  <span className="font-semibold text-primary min-w-7 pt-0.5 flex-shrink-0">
                     {option}.
                   </span>
-                  <span className="text-sm leading-relaxed flex-1 text-foreground">
+                  <span className="text-sm sm:text-base leading-relaxed flex-1 text-foreground">
                     {optionText}
                   </span>
                 </Label>
@@ -116,17 +116,17 @@ export default function QuestionPanel({
 
       {/* Feedback for Review/Results */}
       {isReviewOrResults && selectedAnswer && (
-        <div className="mt-6 pt-6 border-t border-border/50">
+        <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-border/50">
           {isCorrect ? (
-            <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
-              <p className="text-sm font-medium text-green-700 dark:text-green-400">
+            <div className="p-3 sm:p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+              <p className="text-xs sm:text-sm font-medium text-green-700 dark:text-green-400">
                 ✓ Bonne réponse
               </p>
             </div>
           ) : (
             <div className="space-y-3">
-              <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20">
-                <p className="text-sm font-medium text-destructive mb-2">
+              <div className="p-3 sm:p-4 rounded-lg bg-destructive/10 border border-destructive/20">
+                <p className="text-xs sm:text-sm font-medium text-destructive mb-2">
                   ✗ Réponse incorrecte
                 </p>
                 <p className="text-xs text-muted-foreground">

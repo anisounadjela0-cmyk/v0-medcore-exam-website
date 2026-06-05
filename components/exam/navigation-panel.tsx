@@ -15,6 +15,7 @@ interface NavigationPanelProps {
   onJumpToQuestion: (index: number) => void;
   onFinish: () => void;
   state: 'exam' | 'review' | 'results';
+  isMobile?: boolean;
 }
 
 export default function NavigationPanel({
@@ -26,10 +27,68 @@ export default function NavigationPanel({
   onJumpToQuestion,
   onFinish,
   state,
+  isMobile = false,
 }: NavigationPanelProps) {
   const isExam = state === 'exam';
   const answeredCount = Object.keys(answers).length;
 
+  if (isMobile) {
+    return (
+      <div className="p-4 space-y-3">
+        {/* Progress Bar */}
+        <div className="space-y-2">
+          <div className="flex justify-between items-center text-xs">
+            <p className="text-muted-foreground">
+              Question {currentQuestion + 1}/{totalQuestions}
+            </p>
+            <p className="font-semibold text-primary">
+              {answeredCount} répondue{answeredCount !== 1 ? 's' : ''}
+            </p>
+          </div>
+          <div className="h-2 bg-border rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-300"
+              style={{
+                width: `${((currentQuestion + 1) / totalQuestions) * 100}%`,
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="flex gap-2">
+          <Button
+            onClick={onPrevious}
+            disabled={currentQuestion === 0 || !isExam}
+            variant="outline"
+            size="sm"
+            className="flex-1"
+          >
+            <ChevronUp className="h-4 w-4" />
+          </Button>
+          <Button
+            onClick={onNext}
+            disabled={currentQuestion === totalQuestions - 1 || !isExam}
+            variant="outline"
+            size="sm"
+            className="flex-1"
+          >
+            <ChevronDown className="h-4 w-4" />
+          </Button>
+          <Button
+            onClick={onFinish}
+            disabled={!isExam}
+            className="flex-1 bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+            size="sm"
+          >
+            <Flag className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop Layout
   return (
     <div className="space-y-4">
       {/* Summary Card */}
