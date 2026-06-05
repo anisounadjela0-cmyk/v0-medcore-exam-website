@@ -231,6 +231,13 @@ export default function ResultsView({
             <Home className="h-4 w-4 mr-2" />
             Retour à l&apos;accueil
           </Button>
+
+          {/* Footer Credits */}
+          <div className="pt-8 border-t border-border/50 text-center">
+            <p className="text-xs text-muted-foreground">
+              Made by <span className="font-semibold text-foreground">Medcore</span> & <span className="font-semibold text-foreground">Anaesthesia Man</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -65,6 +65,13 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             Vous aurez 60 minutes pour répondre à toutes les questions
           </p>
         </div>
+
+        {/* Footer Credits */}
+        <div className="pt-12 border-t border-border/50">
+          <p className="text-xs text-muted-foreground">
+            Made by <span className="font-semibold text-foreground">Medcore</span> & <span className="font-semibold text-foreground">Anaesthesia Man</span>
+          </p>
+        </div>
       </div>
     </div>
   );
